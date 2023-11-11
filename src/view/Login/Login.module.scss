@@ -1,0 +1,64 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/graphics/login_background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  .loginCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: $medium) {
+      width: 80%;
+    }
+
+    .header {
+      font-size: 2rem;
+      color: $primary;
+      font-weight: bold;
+    }
+
+    .logo {
+      width: 25rem;
+
+      @media screen and (max-width: $medium) {
+        width: 20rem;
+      }
+    }
+
+    .inputWrapper {
+      width: 100%;
+      .input {
+        height: 3rem;
+      }
+      .errorMessage {
+        font-size: 1rem;
+        color: $errorRed;
+      }
+    }
+
+    .submitButton {
+      text-align: center;
+      background-color: $primaryLight;
+      color: $white;
+      font-weight: 600;
+      width: 50%;
+      height: 3rem;
+      font-size: 1.3rem;
+      margin: 3rem 0;
+
+      &:hover {
+        color: $white;
+        background-color: $primaryLight;
+      }
+    }
+  }
+}
