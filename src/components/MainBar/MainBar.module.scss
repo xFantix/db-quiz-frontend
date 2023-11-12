@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.bar {
+  width: 100%;
+  height: 4rem;
+  background-color: $white;
+  box-shadow: 0 0.8rem 3rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .leftSide {
+    padding-left: 2rem;
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .rightSide {
+    padding-right: 2rem;
+    .tagName {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .userIcon {
+        path {
+          fill: $primaryLight;
+        }
+      }
+
+      .userName {
+        font-weight: 600;
+        color: $primaryLight;
+      }
+    }
+  }
+}
