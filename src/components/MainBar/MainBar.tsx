@@ -3,8 +3,12 @@ import Logo from "@assets/graphics/simpleLogo.png";
 import styles from "./MainBar.module.scss";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAppSelector } from "../../store/hooks";
 
 const MainBar = () => {
+  const { name, surname } = useAppSelector(
+    (store) => store.user.userInformation
+  );
   return (
     <header className={styles.bar}>
       <div className={styles.leftSide}>
@@ -13,7 +17,7 @@ const MainBar = () => {
       <div className={styles.rightSide}>
         <div className={styles.tagName}>
           <FontAwesomeIcon className={styles.userIcon} icon={faUser} />
-          <span className={styles.userName}>Kamil Jankowski</span>
+          <span className={styles.userName}>{`${name} ${surname}`}</span>
         </div>
       </div>
     </header>

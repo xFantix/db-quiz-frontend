@@ -1,0 +1,12 @@
+@import "../../../styles/variables.scss";
+
+.customButton {
+  background-color: $primaryLight;
+  color: $white;
+  font-weight: 600;
+  border: 0;
+
+  &:hover {
+    color: $white !important;
+  }
+}

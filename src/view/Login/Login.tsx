@@ -6,6 +6,8 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./loginSchema";
 import { useState } from "react";
+import { useAppDispatch } from "../../store/hooks";
+import { userActions } from "../../store/user/user.actions";
 
 interface LoginData {
   email: string;
@@ -22,11 +24,14 @@ const Login = () => {
     mode: "onSubmit",
   });
 
+  const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<LoginData> = (data) => {
     setIsLoading(true);
+    Promise.resolve(dispatch(userActions.loginUser(data))).finally(() => {
+      setIsLoading(false);
+    });
   };
-
-  console.log(errors);
 
   const [isLoading, setIsLoading] = useState(false);
 
