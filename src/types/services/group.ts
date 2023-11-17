@@ -5,5 +5,5 @@ export interface GroupList {
   name: string;
   startTimeQuiz: string;
   endTimeQuiz: string;
-  users: User[];
+  users: User["id"][];
 }
