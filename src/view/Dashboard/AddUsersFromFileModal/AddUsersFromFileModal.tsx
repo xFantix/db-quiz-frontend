@@ -22,8 +22,10 @@ const AddUsersFromFileModal = ({ visible, changeVisible }: Props) => {
     const formData = new FormData();
 
     if (file && file.type === "text/csv") {
-      dispatch(groupActions.addUsersFromFile(formData)).finally(() => {
-        toastService.showSuccess("Dodano użytkowników");
+      Promise.resolve(formData.append("file", file)).then(() => {
+        dispatch(groupActions.addUsersFromFile(formData)).then(() => {
+          toastService.showSuccess("Dodano użytkownikow");
+        });
       });
     }
   };
@@ -56,7 +58,7 @@ const AddUsersFromFileModal = ({ visible, changeVisible }: Props) => {
 
           <label htmlFor={"attachments"} className={styles.label}>
             <FontAwesomeIcon icon={faLink} />
-            <span>Attach file</span>
+            <span>Dodaj plik</span>
           </label>
           <span>Max 25 MB</span>
         </div>

@@ -28,7 +28,7 @@ const GroupCard = ({ group }: Props) => {
 
   const removeGroup = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
-    dispatch(groupActions.removeGroup(id)).finally(() => {
+    dispatch(groupActions.removeGroup(id)).then(() => {
       toastService.showSuccess("Grupa została usunięta");
     });
   };
