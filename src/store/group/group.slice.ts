@@ -17,9 +17,21 @@ export const groupSlice = createSlice({
       (store: GroupStore, action: PayloadAction<GroupList[]>) => {
         store.groups = action.payload;
       }
-    );
+    ),
+      builder.addCase(
+        groupActions.addGroup.fulfilled,
+        (store: GroupStore, action: PayloadAction<GroupList>) => {
+          console.log(action.payload);
+          store.groups = [...store.groups, action.payload];
+        }
+      ),
+      builder.addCase(
+        groupActions.removeGroup.fulfilled,
+        (store: GroupStore, action: PayloadAction<number>) => {
+          store.groups = store.groups.filter((el) => el.id !== action.payload);
+        }
+      );
   },
 });
 
 export default groupSlice.reducer;
-// export const { saveUser } = userSlice.actions;

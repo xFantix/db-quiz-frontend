@@ -4,7 +4,34 @@ $medium: 900px;
 $white: #fff;
 $primary: #004492;
 $primaryLight: #0e68cf;
+$secondary: #1e88e5;
 $errorRed: #ff3333;
 $lightGray: #a8a8a8;
 $gray: #555454;
 $dirtyWhite: #f6f6f6;
+$indigoGray: #25396f;
+$red: #da2700;
+$green: #0a8369;
+
+$indigoGrayPalette: (
+  400: #929cb7,
+  700: #51618c,
+  800: #3b4d7e,
+);
+
+@mixin iconButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  background-color: transparent;
+  transition: all 0.3s;
+
+  line-height: 1;
+
+  svg path {
+    fill: $indigoGray;
+  }
+}

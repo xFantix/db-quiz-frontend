@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 
 @mixin tag {
-  background-color: $primary;
   color: $white;
   padding: 0.2rem 0.5rem;
   border-radius: 10px;
@@ -21,6 +20,27 @@
   border-radius: 10px;
   border: 1px solid #e9ecef;
   overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  .removeButton {
+    position: absolute;
+    z-index: 100;
+    background-color: $white;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg path {
+      fill: $red;
+    }
+  }
 
   .top {
     width: 100%;
@@ -30,15 +50,25 @@
 
     .tagMembers {
       position: absolute;
-      left: 48%;
+      left: 17%;
       top: 1rem;
+      background-color: $primary;
       @include tag;
     }
 
     .tagStart {
       position: absolute;
-      left: 60%;
+      left: 28%;
       top: 1rem;
+      background-color: $green;
+      @include tag;
+    }
+
+    .tagEnd {
+      position: absolute;
+      left: 64%;
+      top: 1rem;
+      background-color: $red;
       @include tag;
     }
 

@@ -1,0 +1,110 @@
+@import "../../../styles/variables.scss";
+
+.modal {
+  color: $indigoGray;
+  letter-spacing: 0.25px;
+
+  div[class~="ant-modal-body"] {
+    overflow-x: hidden;
+  }
+
+  button[class~="ant-modal-close"] {
+    @include iconButton;
+    padding: revert;
+    margin: 10px 16px;
+
+    span[class~="ant-modal-close-x"] {
+      display: inline;
+      width: 20px;
+      height: 20px;
+      line-height: 1;
+    }
+  }
+
+  div[class~="ant-modal-title"] {
+    color: $primaryLight;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 15px;
+      color: $indigoGray;
+    }
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  div[class~="ant-modal-footer"] {
+    padding: 10px 25px 25px;
+
+    button {
+      height: 40px;
+    }
+
+    button[class~="ant-btn"] {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+
+      svg {
+        height: 22px;
+        margin-right: 10px;
+      }
+    }
+    button[class~="ant-btn-text"] {
+      margin-right: 15px;
+    }
+
+    button[class~="ant-btn-primary"] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: $primaryLight;
+      border-color: $primaryLight;
+      padding: 0 24px;
+      font-weight: 600;
+
+      &:hover {
+        background-color: $primaryLight;
+      }
+
+      &[class~="ant-btn-dangerous"] {
+        background-color: $red;
+        border-color: $red;
+      }
+
+      span {
+        color: #fff;
+      }
+    }
+
+    button[class~="ant-btn-default"] {
+      border-color: #d3d7e2;
+      background: #ffffff;
+      padding: 0 24px;
+      margin-right: 8px;
+
+      span {
+        transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        color: $indigoGray;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonAdditional {
+  padding-left: 0;
+  transition: none;
+  color: map-get($indigoGrayPalette, 700);
+
+  span {
+    color: map-get($indigoGrayPalette, 700);
+  }
+}

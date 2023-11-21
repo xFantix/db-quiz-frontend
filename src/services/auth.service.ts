@@ -8,6 +8,16 @@ const login = (loginFormData: LoginForm) => {
     .then((res) => res.data);
 };
 
-export const AuthService = {
+const refreshToken = (token: string) => {
+  return http
+    .post<Pick<LoginRequest, "accessToken">>(
+      config.api.endpoints.auth.refreshToken,
+      { token }
+    )
+    .then((res) => res.data);
+};
+
+export const authService = {
   login,
+  refreshToken,
 };

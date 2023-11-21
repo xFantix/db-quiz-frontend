@@ -7,3 +7,9 @@ export interface GroupList {
   endTimeQuiz: string;
   users: User["id"][];
 }
+
+export interface AddGroupData {
+  name: string;
+  startTimeQuiz: string;
+  endTimeQuiz: string;
+}

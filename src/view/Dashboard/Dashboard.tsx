@@ -1,14 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { groupActions } from "../../store/group/group.actions";
 import styles from "./Dashboard.module.scss";
 import CustomButton from "@components/common/CustomButton/CustomButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faFile, faPlus } from "@fortawesome/free-solid-svg-icons";
 import GroupCard from "@components/GroupCard/GroupCard";
+import CreateGroupModal from "./CreateGroupModal/CreateGroupModal";
+import AddUsersFromFileModal from "./AddUsersFromFileModal/AddUsersFromFileModal";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
+
+  const [addGroup, setAddGroup] = useState(false);
+  const [addUsersFile, setAddUsersFile] = useState(false);
 
   useEffect(() => {
     dispatch(groupActions.getAllGroups());
@@ -22,19 +27,13 @@ const Dashboard = () => {
     <div className={styles.dashboard}>
       {isAdmin && (
         <div className={styles.buttonsWrapper}>
-          <CustomButton onClick={() => {}}>
+          <CustomButton onClick={() => setAddGroup(true)}>
             <div className={styles.button}>
               <FontAwesomeIcon icon={faPlus} />
               <span>Dodaj grupę</span>
             </div>
           </CustomButton>
-          <CustomButton onClick={() => {}}>
-            <div className={styles.button}>
-              <FontAwesomeIcon icon={faTrash} />
-              <span>Usuń grupę</span>
-            </div>
-          </CustomButton>
-          <CustomButton onClick={() => {}}>
+          <CustomButton onClick={() => setAddUsersFile(true)}>
             <div className={styles.button}>
               <FontAwesomeIcon icon={faFile} />
               <span>Dodaj użytkowników z pliku</span>
@@ -45,15 +44,15 @@ const Dashboard = () => {
       {!!groups.length && (
         <div className={styles.groups}>
           {groups.map((group) => (
-            <GroupCard
-              key={group.id}
-              name={group.name}
-              membersCount={group.users.length}
-              startDate={group.startTimeQuiz}
-            />
+            <GroupCard key={group.id} group={group} />
           ))}
         </div>
       )}
+      <CreateGroupModal visible={addGroup} changeVisible={setAddGroup} />
+      <AddUsersFromFileModal
+        visible={addUsersFile}
+        changeVisible={setAddUsersFile}
+      />
     </div>
   );
 };

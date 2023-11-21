@@ -1,28 +1,61 @@
 import styles from "./GroupCard.module.scss";
 import Background from "@assets/graphics/backgroundCard.svg";
-import { faCalendarDays, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarDays,
+  faClose,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image } from "antd";
 import { format } from "date-fns";
+import { GroupList } from "../../types/services/group";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { groupActions } from "../../store/group/group.actions";
+import { toastService } from "../../services/toastMessage/toastMessage";
+import { history } from "../../utils/history";
+import config from "../../utils/config";
 
 interface Props {
-  name: string;
-  membersCount: number;
-  startDate: string;
+  group: GroupList;
 }
 
-const GroupCard = ({ name, membersCount, startDate }: Props) => {
+const GroupCard = ({ group }: Props) => {
+  const { id, name, startTimeQuiz, endTimeQuiz, users } = group;
+
+  const dispatch = useAppDispatch();
+
+  const { isAdmin } = useAppSelector((store) => store.user.userInformation);
+
+  const removeGroup = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    dispatch(groupActions.removeGroup(id)).finally(() => {
+      toastService.showSuccess("Grupa została usunięta");
+    });
+  };
+
   return (
-    <div className={styles.groupCard}>
+    <div
+      onClick={() => history.push(config.routes.group(id))}
+      className={styles.groupCard}
+    >
+      {isAdmin && (
+        <button onClick={(e) => removeGroup(e)} className={styles.removeButton}>
+          <FontAwesomeIcon icon={faClose} />
+        </button>
+      )}
       <div className={styles.top}>
         <Image preview={false} className={styles.image} src={Background} />
         <div className={styles.tagMembers}>
           <FontAwesomeIcon icon={faUser} />
-          {membersCount}
+          {users.length}
         </div>
         <div className={styles.tagStart}>
           <FontAwesomeIcon icon={faCalendarDays} />
-          {format(new Date(startDate), "dd-MM-yyyy HH:mm")}
+          {format(new Date(startTimeQuiz), "dd-MM-yyyy HH:mm")}
+        </div>
+        <div className={styles.tagEnd}>
+          <FontAwesomeIcon icon={faCalendarDays} />
+          {format(new Date(endTimeQuiz), "dd-MM-yyyy HH:mm")}
         </div>
       </div>
       <div className={styles.bottom}>

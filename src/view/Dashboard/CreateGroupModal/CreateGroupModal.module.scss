@@ -1,0 +1,16 @@
+@import "../../../styles/variables.scss";
+
+.modal {
+  padding: 1.5rem 0rem;
+
+  .inputWrapper {
+    width: 100%;
+    .input {
+      height: 2rem;
+    }
+    .errorMessage {
+      font-size: 1rem;
+      color: $errorRed;
+    }
+  }
+}

@@ -1,7 +1,12 @@
 import axios from "axios";
 import { history } from "./history";
-import { getLocalStorageTokens, removeLocalStorageUser } from "./auth";
+import {
+  getLocalStorageTokens,
+  removeLocalStorageUser,
+  setLocalStorageTokens,
+} from "./auth";
 import config from "./config";
+import { authService } from "../services/auth.service";
 
 const http = axios.create({
   baseURL: config.apiUrl,
@@ -11,7 +16,7 @@ const http = axios.create({
 http.interceptors.request.use(
   (config) => {
     const tokens = getLocalStorageTokens();
-    if (tokens) config.headers.Authorization = `Token ${tokens.accessToken}`;
+    if (tokens) config.headers.Authorization = `Bearer ${tokens.accessToken}`;
     return config;
   },
   (error) => Promise.reject(error)
@@ -22,9 +27,26 @@ http.interceptors.response.use(
   (error) => {
     if (error?.response?.status === 500 || error?.response?.status === 404)
       return Promise.reject(null);
-    else if (error?.response?.status === 401) {
-      removeLocalStorageUser();
-      history.push("/");
+    else if (error?.response?.status === 403) {
+      const tokens = getLocalStorageTokens();
+
+      if (tokens?.refreshToken) {
+        return authService
+          .refreshToken(tokens.refreshToken)
+          .then((data) => {
+            setLocalStorageTokens({ ...tokens, accessToken: data.accessToken });
+            error.config?.headers &&
+              (error.config.headers.Authorization = `Bearer ${data.accessToken}`);
+            return axios.request(error.config);
+          })
+          .catch(() => {
+            removeLocalStorageUser();
+            history.push(config.routes.login);
+          });
+      } else {
+        removeLocalStorageUser();
+        history.push(config.routes.login);
+      }
     }
     return Promise.reject(error);
   }
