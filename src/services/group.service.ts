@@ -1,6 +1,11 @@
-import { AddGroupData, GroupList } from "../types/services/group";
-import http from "../utils/api";
-import config from "../utils/config";
+import {
+  AddGroupData,
+  AddUserToGroup,
+  GroupList,
+} from '../types/services/group';
+import { User } from '../types/store/userSlice.types';
+import http from '../utils/api';
+import config from '../utils/config';
 
 const getAllGroups = () => {
   return http
@@ -24,9 +29,27 @@ const addUsersFromFile = (payload: FormData) => {
   return http
     .post<GroupList[]>(config.api.endpoints.group.addUsersFromFile, payload, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     })
+    .then((res) => res.data);
+};
+
+const sendReminderEmail = (id: number) => {
+  return http
+    .post(config.api.endpoints.group.reminderMessage(id), { id })
+    .then((res) => res.data);
+};
+
+const sendPasswordEmail = (id: number) => {
+  return http
+    .post(config.api.endpoints.group.passwordMessage(id), { id })
+    .then((res) => res.data);
+};
+
+const addUserToGroup = (data: AddUserToGroup) => {
+  return http
+    .post<User>(config.api.endpoints.user.addUser, { ...data, isAdmin: false })
     .then((res) => res.data);
 };
 
@@ -35,4 +58,7 @@ export const groupService = {
   addGroup,
   removeGroup,
   addUsersFromFile,
+  sendReminderEmail,
+  sendPasswordEmail,
+  addUserToGroup,
 };

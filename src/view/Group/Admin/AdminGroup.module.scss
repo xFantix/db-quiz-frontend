@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 3rem;
+
+  .buttonWrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}

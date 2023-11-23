@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import { ReactNode } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
   title: string;
@@ -16,7 +16,7 @@ const Notification = ({ title, message, undo }: Props) => {
       <p>{message}</p>
       {undo && (
         <span onClick={undo}>
-          {" "}
+          {' '}
           <u>UNDO</u>
         </span>
       )}

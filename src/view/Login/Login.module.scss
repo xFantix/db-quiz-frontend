@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../styles/variables";
 
 .wrapper {
   width: 100%;
@@ -36,9 +36,11 @@
 
     .inputWrapper {
       width: 100%;
+
       .input {
         height: 3rem;
       }
+
       .errorMessage {
         font-size: 1rem;
         color: $errorRed;

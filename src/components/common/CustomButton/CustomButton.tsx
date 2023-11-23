@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from "antd";
-import styles from "./CustomButton.module.scss";
+import { Button } from 'antd';
+import styles from './CustomButton.module.scss';
 
 interface Props {
   children: string | JSX.Element | JSX.Element[];

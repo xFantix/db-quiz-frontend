@@ -14,23 +14,19 @@ $legacy_support_for_ie: false !default; // Used also in Compass
 
 // Set the default font family here so you don't have to override it later
 $normalized_font_family: sans-serif !default;
-
 $normalize_headings: true !default;
-
 $h1_font_size: 2em !default;
 $h2_font_size: 1.5em !default;
 $h3_font_size: 1.17em !default;
 $h4_font_size: 1em !default;
 $h5_font_size: 0.83em !default;
 $h6_font_size: 0.75em !default;
-
 $h1_margin: 0.67em 0 !default;
 $h2_margin: 0.83em 0 !default;
 $h3_margin: 1em 0 !default;
 $h4_margin: 1.33em 0 !default;
 $h5_margin: 1.67em 0 !default;
 $h6_margin: 2.33em 0 !default;
-
 $background: #fff !default;
 $color: #000 !default;
 
@@ -60,6 +56,7 @@ audio,
 canvas,
 video {
   display: inline-block;
+
   @if $legacy_support_for_ie {
     *display: inline;
     *zoom: 1;
@@ -74,10 +71,8 @@ audio:not([controls]) {
   height: 0; // 2
 }
 
-//
 // Address `[hidden]` styling not present in IE 8/9.
 // Hide the `template` element in IE, Safari, and Firefox < 22.
-//
 
 [hidden],
 template {
@@ -97,10 +92,10 @@ html {
   @if $legacy_support_for_ie {
     font-size: 100%; // 1
   }
+
   background: $background;
   color: $color;
-  -webkit-text-size-adjust: 100%; // 2
-  -ms-text-size-adjust: 100%; // 2
+  text-size-adjust: 100%; // 2
 }
 
 // Addresses font-family inconsistency between 'textarea' and other form elements.
@@ -234,9 +229,11 @@ kbd,
 pre,
 samp {
   font-family: monospace, serif;
+
   @if $legacy_support_for_ie {
-    _font-family: "courier new", monospace;
+    _font-family: 'courier new', monospace;
   }
+
   font-size: 1em;
 }
 
@@ -251,7 +248,13 @@ pre {
 // Set consistent quote types.
 
 q {
-  quotes: "\201C""\201D""\2018""\2019";
+  quotes: '\201C' '\201D' '\2018' '\2019';
+
+  &::before,
+  &::after {
+    content: '';
+    content: none;
+  }
 }
 
 // 1. Addresses CSS quotes not supported in IE6/7
@@ -261,15 +264,6 @@ q {
 @if $legacy_support_for_ie {
   q {
     quotes: none;
-  }
-}
-
-// 2
-q {
-  &:before,
-  &:after {
-    content: "";
-    content: none;
   }
 }
 
@@ -348,9 +342,6 @@ nav {
 
 img {
   border: 0; // 1
-  @if $legacy_support_for_ie {
-    -ms-interpolation-mode: bicubic; // 2
-  }
 }
 
 // Corrects overflow displayed oddly in IE9
@@ -397,6 +388,7 @@ legend {
   border: 0; // 1
   padding: 0; // 2
   white-space: normal; // 3
+
   @if $legacy_support_for_ie {
     *margin-left: -7px; // 4
   }
@@ -415,17 +407,13 @@ textarea {
   font-size: 100%; // 2
   margin: 0; // 3
   vertical-align: baseline; // 4
+
   @if $legacy_support_for_ie {
     *vertical-align: middle; // 4
   }
 }
 
 // Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
-
-button,
-input {
-  line-height: normal;
-}
 
 // Address inconsistent `text-transform` inheritance for `button` and `select`.
 // All other form control elements do not inherit `text-transform` values.
@@ -450,6 +438,7 @@ html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
   cursor: pointer; // 3
+
   @if $legacy_support_for_ie {
     *overflow: visible; // 4
   }
@@ -467,6 +456,8 @@ input[disabled] {
 
 button,
 input {
+  line-height: normal;
+
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
@@ -495,16 +486,14 @@ table {
 input {
   // 1. Addresses appearance set to searchfield in S5, Chrome
   // 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
-  &[type="search"] {
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box; // 2
+  &[type='search'] {
     box-sizing: content-box;
 
     // Remove inner padding and search cancel button in Safari 5 and Chrome
     // on OS X.
     &::-webkit-search-cancel-button,
     &::-webkit-search-decoration {
-      -webkit-appearance: none;
+      appearance: none;
     }
   }
 
@@ -512,10 +501,11 @@ input {
   // 2. Remove excess padding in IE 8/9/10.
   // 3. Removes excess padding in IE7
   //    Known issue: excess padding remains in IE6
-  &[type="checkbox"],
-  &[type="radio"] {
+  &[type='checkbox'],
+  &[type='radio'] {
     box-sizing: border-box; // 1
     padding: 0; // 2
+
     @if $legacy_support_for_ie {
       *height: 13px; // 3
       *width: 13px; // 3

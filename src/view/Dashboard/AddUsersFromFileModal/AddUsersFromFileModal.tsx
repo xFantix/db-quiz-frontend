@@ -1,12 +1,12 @@
-import Modal from "@components/common/Modal/Modal";
-import styles from "./AddUsersFromFileModal.module.scss";
-import { Form } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
-import { useAppDispatch } from "../../../store/hooks";
-import { groupActions } from "../../../store/group/group.actions";
-import { toastService } from "../../../services/toastMessage/toastMessage";
+import Modal from '@components/common/Modal/Modal';
+import styles from './AddUsersFromFileModal.module.scss';
+import { Form } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../../store/hooks';
+import { groupActions } from '../../../store/group/group.actions';
+import { toastService } from '../../../services/toastMessage/toastMessage';
 
 interface Props {
   visible: boolean;
@@ -21,10 +21,10 @@ const AddUsersFromFileModal = ({ visible, changeVisible }: Props) => {
   const onSubmit = async () => {
     const formData = new FormData();
 
-    if (file && file.type === "text/csv") {
-      Promise.resolve(formData.append("file", file)).then(() => {
+    if (file && file.type === 'text/csv') {
+      Promise.resolve(formData.append('file', file)).then(() => {
         dispatch(groupActions.addUsersFromFile(formData)).then(() => {
-          toastService.showSuccess("Dodano użytkownikow");
+          toastService.showSuccess('Dodano użytkownikow');
         });
       });
     }
@@ -37,11 +37,11 @@ const AddUsersFromFileModal = ({ visible, changeVisible }: Props) => {
 
   return (
     <Modal
-      title={"Dodanie użytkowników z pliku"}
+      title={'Dodanie użytkowników z pliku'}
       isVisible={visible}
       onClose={() => changeVisible(false)}
-      okText={"Dodaj"}
-      closeText="Zamknij"
+      okText={'Dodaj'}
+      closeText='Zamknij'
       onConfirm={() => {
         onSubmit();
       }}
@@ -50,13 +50,13 @@ const AddUsersFromFileModal = ({ visible, changeVisible }: Props) => {
         <div className={styles.buttonWrapper}>
           <input
             onChange={(e) => handleFileChange(e)}
-            type="file"
-            name="attachments"
-            id="attachments"
+            type='file'
+            name='attachments'
+            id='attachments'
             className={styles.input}
           />
 
-          <label htmlFor={"attachments"} className={styles.label}>
+          <label htmlFor={'attachments'} className={styles.label}>
             <FontAwesomeIcon icon={faLink} />
             <span>Dodaj plik</span>
           </label>

@@ -1,9 +1,9 @@
-import { ReactNode, useRef } from "react";
-import { Button, Modal as AntdModal, ModalProps } from "antd";
+import { ReactNode, useRef } from 'react';
+import { Button, Modal as AntdModal, ModalProps } from 'antd';
 
-import styles from "./Modal.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import styles from './Modal.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   onConfirm: () => void;
@@ -12,9 +12,9 @@ type Props = {
   description?: string;
   className?: string;
   okText?: string;
-  okButtonType?: "primary" | "default";
+  okButtonType?: 'primary' | 'default';
   closeText?: string;
-  // eslint-disable-next-line no-undef
+
   children?: JSX.Element;
   disableButtons?: boolean;
   closeIcon?: ReactNode;
@@ -31,20 +31,20 @@ const Modal = ({
   isVisible,
   onClose,
   onConfirm,
-  description = "",
-  className = "",
-  okText = "Save",
+  description = '',
+  className = '',
+  okText = 'Save',
   children,
   disableButtons,
   closeIcon,
   confirmDisabled,
-  closeText = "Close",
+  closeText = 'Close',
   onAdditionalAction,
   additionalButtonIcon,
-  additionalButtonText = "",
-  additionalButtonClassName = "",
+  additionalButtonText = '',
+  additionalButtonClassName = '',
   closeOnConfirm = true,
-  okButtonType = "primary",
+  okButtonType = 'primary',
   ...modalProps
 }: Props) => {
   const ref = useRef(null);
@@ -57,12 +57,12 @@ const Modal = ({
         <div>
           {onAdditionalAction ? (
             <Button
-              type="text"
-              aria-label="additional-action"
+              type='text'
+              aria-label='additional-action'
               icon={additionalButtonIcon}
               className={`${styles.buttonAdditional} ${additionalButtonClassName}`}
-              shape="round"
-              key="additional"
+              shape='round'
+              key='additional'
               onClick={onAdditionalAction}
             >
               {additionalButtonText}
@@ -71,18 +71,18 @@ const Modal = ({
         </div>
         <div>
           <Button
-            type="text"
-            shape="round"
-            key="back"
+            type='text'
+            shape='round'
+            key='back'
             onClick={onClose}
-            aria-label="modal-close"
+            aria-label='modal-close'
           >
             {closeText}
           </Button>
           <Button
-            aria-label="modal-ok"
-            shape="round"
-            key="submit"
+            aria-label='modal-ok'
+            shape='round'
+            key='submit'
             type={okButtonType}
             disabled={confirmDisabled}
             loading={modalProps.confirmLoading}
@@ -107,12 +107,12 @@ const Modal = ({
       closeIcon={closeIcon ? closeIcon : <FontAwesomeIcon icon={faClose} />}
       className={`${styles.modal} ${className}`}
       centered={true}
-      cancelButtonProps={{ shape: "round", type: "text" }}
+      cancelButtonProps={{ shape: 'round', type: 'text' }}
       okText={okText}
       footer={getFooter()}
       bodyStyle={{
-        overflowY: "auto",
-        maxHeight: "calc(100vh - 200px)",
+        overflowY: 'auto',
+        maxHeight: 'calc(100vh - 200px)',
         ...modalProps.bodyStyle,
       }}
     >

@@ -1,6 +1,6 @@
-import MainBar from "@components/MainBar/MainBar";
-import styles from "./Layout.module.scss";
-import Navigation from "@components/Navigation/Navigation";
+import MainBar from '@components/MainBar/MainBar';
+import styles from './Layout.module.scss';
+import Navigation from '@components/Navigation/Navigation';
 
 interface Props {
   children: string | JSX.Element | JSX.Element[];

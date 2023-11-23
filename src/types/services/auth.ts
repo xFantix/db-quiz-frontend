@@ -1,4 +1,4 @@
-import { User } from "../store/userSlice.types";
+import { User } from '../store/userSlice.types';
 
 export interface LoginForm {
   email: string;

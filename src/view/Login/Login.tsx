@@ -1,13 +1,13 @@
-import Card from "@components/common/Card/Card";
-import styles from "./Login.module.scss";
-import Logo from "@assets/graphics/logo-umk.png";
-import { Button, Form, Image, Input } from "antd";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "./loginSchema";
-import { useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
-import { userActions } from "../../store/user/user.actions";
+import Card from '@components/common/Card/Card';
+import styles from './Login.module.scss';
+import Logo from '@assets/graphics/logo-umk.png';
+import { Button, Form, Image, Input } from 'antd';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from './loginSchema';
+import { useState } from 'react';
+import { useAppDispatch } from '../../store/hooks';
+import { userActions } from '../../store/user/user.actions';
 
 interface LoginData {
   email: string;
@@ -21,7 +21,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginData>({
     resolver: yupResolver(loginSchema),
-    mode: "onSubmit",
+    mode: 'onSubmit',
   });
 
   const dispatch = useAppDispatch();
@@ -38,17 +38,17 @@ const Login = () => {
   return (
     <div className={styles.wrapper}>
       <Card className={styles.loginCard}>
-        <Image className={styles.logo} src={Logo} alt="logo" preview={false} />
+        <Image className={styles.logo} src={Logo} alt='logo' preview={false} />
         <h2 className={styles.header}>Logowanie</h2>
-        <Form onFinish={handleSubmit(onSubmit)} id="login">
+        <Form onFinish={handleSubmit(onSubmit)} id='login'>
           <Controller
-            name={"email"}
+            name={'email'}
             control={control}
             render={({ field }) => (
               <Form.Item className={styles.inputWrapper}>
                 <Input
                   className={styles.input}
-                  placeholder="Email"
+                  placeholder='Email'
                   value={field.value}
                   onChange={field.onChange}
                 />
@@ -61,14 +61,14 @@ const Login = () => {
             )}
           />
           <Controller
-            name={"password"}
+            name={'password'}
             control={control}
             render={({ field }) => (
               <Form.Item className={styles.inputWrapper}>
                 <Input
                   className={styles.input}
-                  placeholder="Hasło"
-                  type="password"
+                  placeholder='Hasło'
+                  type='password'
                   value={field.value}
                   onChange={field.onChange}
                 />
@@ -84,7 +84,7 @@ const Login = () => {
           <Button
             loading={isLoading}
             className={styles.submitButton}
-            htmlType="submit"
+            htmlType='submit'
           >
             Zaloguj
           </Button>

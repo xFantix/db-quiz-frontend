@@ -1,5 +1,5 @@
-import { Oval } from "react-loader-spinner";
-import styles from "./Loader.module.scss";
+import { Oval } from 'react-loader-spinner';
+import styles from './Loader.module.scss';
 
 const Loader = () => {
   return (
@@ -7,11 +7,11 @@ const Loader = () => {
       <Oval
         height={80}
         width={80}
-        color="#0E68CF"
-        wrapperClass=""
+        color='#0E68CF'
+        wrapperClass=''
         visible={true}
-        ariaLabel="oval-loading"
-        secondaryColor="#0E68CF"
+        ariaLabel='oval-loading'
+        secondaryColor='#0E68CF'
         strokeWidth={2}
         strokeWidthSecondary={2}
       />

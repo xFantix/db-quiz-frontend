@@ -1,8 +1,8 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { isUserAuthenticated } from "../utils/auth";
-import config from "../utils/config";
+import { isUserAuthenticated } from '../utils/auth';
+import config from '../utils/config';
 
 type Props = {
   children: React.ReactNode;

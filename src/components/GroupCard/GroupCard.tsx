@@ -1,19 +1,19 @@
-import styles from "./GroupCard.module.scss";
-import Background from "@assets/graphics/backgroundCard.svg";
+import styles from './GroupCard.module.scss';
+import Background from '@assets/graphics/backgroundCard.svg';
 import {
   faCalendarDays,
   faClose,
   faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Image } from "antd";
-import { format } from "date-fns";
-import { GroupList } from "../../types/services/group";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { groupActions } from "../../store/group/group.actions";
-import { toastService } from "../../services/toastMessage/toastMessage";
-import { history } from "../../utils/history";
-import config from "../../utils/config";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Image } from 'antd';
+import { format } from 'date-fns';
+import { GroupList } from '../../types/services/group';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { groupActions } from '../../store/group/group.actions';
+import { toastService } from '../../services/toastMessage/toastMessage';
+import { history } from '../../utils/history';
+import config from '../../utils/config';
 
 interface Props {
   group: GroupList;
@@ -29,13 +29,15 @@ const GroupCard = ({ group }: Props) => {
   const removeGroup = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     dispatch(groupActions.removeGroup(id)).then(() => {
-      toastService.showSuccess("Grupa została usunięta");
+      toastService.showSuccess('Grupa została usunięta');
     });
   };
 
   return (
     <div
-      onClick={() => history.push(config.routes.group(id))}
+      onClick={() =>
+        history.push(config.routes.group.replace(':id', String(id)))
+      }
       className={styles.groupCard}
     >
       {isAdmin && (
@@ -51,11 +53,11 @@ const GroupCard = ({ group }: Props) => {
         </div>
         <div className={styles.tagStart}>
           <FontAwesomeIcon icon={faCalendarDays} />
-          {format(new Date(startTimeQuiz), "dd-MM-yyyy HH:mm")}
+          {format(new Date(startTimeQuiz), 'dd-MM-yyyy HH:mm')}
         </div>
         <div className={styles.tagEnd}>
           <FontAwesomeIcon icon={faCalendarDays} />
-          {format(new Date(endTimeQuiz), "dd-MM-yyyy HH:mm")}
+          {format(new Date(endTimeQuiz), 'dd-MM-yyyy HH:mm')}
         </div>
       </div>
       <div className={styles.bottom}>

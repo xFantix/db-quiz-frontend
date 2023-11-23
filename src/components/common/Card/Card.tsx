@@ -1,4 +1,4 @@
-import styles from "./Card.module.scss";
+import styles from './Card.module.scss';
 
 interface Props {
   children: string | JSX.Element | JSX.Element[];
@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Card = ({ children, className }: Props) => {
-  return <div className={`${styles.card} ${className || ""}`}>{children}</div>;
+  return <div className={`${styles.card} ${className || ''}`}>{children}</div>;
 };
 
 export default Card;

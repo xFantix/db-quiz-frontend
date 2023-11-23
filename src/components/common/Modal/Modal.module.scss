@@ -1,19 +1,20 @@
-@import "../../../styles/variables.scss";
+@import '../../../styles/variables';
 
 .modal {
   color: $indigoGray;
   letter-spacing: 0.25px;
 
-  div[class~="ant-modal-body"] {
+  div[class~='ant-modal-body'] {
     overflow-x: hidden;
   }
 
-  button[class~="ant-modal-close"] {
-    @include iconButton;
+  button[class~='ant-modal-close'] {
+    @include icon-button;
+
     padding: revert;
     margin: 10px 16px;
 
-    span[class~="ant-modal-close-x"] {
+    span[class~='ant-modal-close-x'] {
       display: inline;
       width: 20px;
       height: 20px;
@@ -21,7 +22,7 @@
     }
   }
 
-  div[class~="ant-modal-title"] {
+  div[class~='ant-modal-title'] {
     color: $primaryLight;
     display: flex;
     align-items: center;
@@ -36,14 +37,14 @@
     }
   }
 
-  div[class~="ant-modal-footer"] {
+  div[class~='ant-modal-footer'] {
     padding: 10px 25px 25px;
 
     button {
       height: 40px;
     }
 
-    button[class~="ant-btn"] {
+    button[class~='ant-btn'] {
       display: inline-flex;
       align-items: center;
       font-weight: 600;
@@ -53,11 +54,12 @@
         margin-right: 10px;
       }
     }
-    button[class~="ant-btn-text"] {
+
+    button[class~='ant-btn-text'] {
       margin-right: 15px;
     }
 
-    button[class~="ant-btn-primary"] {
+    button[class~='ant-btn-primary'] {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -70,7 +72,7 @@
         background-color: $primaryLight;
       }
 
-      &[class~="ant-btn-dangerous"] {
+      &[class~='ant-btn-dangerous'] {
         background-color: $red;
         border-color: $red;
       }
@@ -80,9 +82,9 @@
       }
     }
 
-    button[class~="ant-btn-default"] {
+    button[class~='ant-btn-default'] {
       border-color: #d3d7e2;
-      background: #ffffff;
+      background: #fff;
       padding: 0 24px;
       margin-right: 8px;
 
@@ -102,9 +104,5 @@
 .buttonAdditional {
   padding-left: 0;
   transition: none;
-  color: map-get($indigoGrayPalette, 700);
-
-  span {
-    color: map-get($indigoGrayPalette, 700);
-  }
+  color: #51618c;
 }

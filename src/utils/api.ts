@@ -1,16 +1,16 @@
-import axios from "axios";
-import { history } from "./history";
+import axios from 'axios';
+import { history } from './history';
 import {
   getLocalStorageTokens,
   removeLocalStorageUser,
   setLocalStorageTokens,
-} from "./auth";
-import config from "./config";
-import { authService } from "../services/auth.service";
+} from './auth';
+import config from './config';
+import { authService } from '../services/auth.service';
 
 const http = axios.create({
   baseURL: config.apiUrl,
-  headers: { "Content-Type": "application/json" },
+  headers: { 'Content-Type': 'application/json' },
 });
 
 http.interceptors.request.use(
@@ -19,7 +19,7 @@ http.interceptors.request.use(
     if (tokens) config.headers.Authorization = `Bearer ${tokens.accessToken}`;
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 http.interceptors.response.use(
@@ -49,7 +49,7 @@ http.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default http;

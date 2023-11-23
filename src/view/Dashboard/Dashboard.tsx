@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { groupActions } from "../../store/group/group.actions";
-import styles from "./Dashboard.module.scss";
-import CustomButton from "@components/common/CustomButton/CustomButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faPlus } from "@fortawesome/free-solid-svg-icons";
-import GroupCard from "@components/GroupCard/GroupCard";
-import CreateGroupModal from "./CreateGroupModal/CreateGroupModal";
-import AddUsersFromFileModal from "./AddUsersFromFileModal/AddUsersFromFileModal";
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { groupActions } from '../../store/group/group.actions';
+import styles from './Dashboard.module.scss';
+import CustomButton from '@components/common/CustomButton/CustomButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
+import GroupCard from '@components/GroupCard/GroupCard';
+import CreateGroupModal from './CreateGroupModal/CreateGroupModal';
+import AddUsersFromFileModal from './AddUsersFromFileModal/AddUsersFromFileModal';
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();

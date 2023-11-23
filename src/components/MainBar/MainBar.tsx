@@ -1,18 +1,18 @@
-import { Image } from "antd";
-import Logo from "@assets/graphics/simpleLogo.png";
-import styles from "./MainBar.module.scss";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppSelector } from "../../store/hooks";
+import { Image } from 'antd';
+import Logo from '@assets/graphics/simpleLogo.png';
+import styles from './MainBar.module.scss';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAppSelector } from '../../store/hooks';
 
 const MainBar = () => {
   const { name, surname } = useAppSelector(
-    (store) => store.user.userInformation
+    (store) => store.user.userInformation,
   );
   return (
     <header className={styles.bar}>
       <div className={styles.leftSide}>
-        <Image preview={false} className={styles.logo} src={Logo} alt="logo" />
+        <Image preview={false} className={styles.logo} src={Logo} alt='logo' />
       </div>
       <div className={styles.rightSide}>
         <div className={styles.tagName}>

@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { toast, ToastOptions } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { AxiosError } from "axios";
+import { ReactNode } from 'react';
+import { toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AxiosError } from 'axios';
 
-const DEFAULT_ERROR = "Something went wrong.";
-const ERROR_TITLE = "ERROR";
+const DEFAULT_ERROR = 'Something went wrong.';
+const ERROR_TITLE = 'ERROR';
 
 enum HttpStatusCode {
   BAD_REQUEST = 400,
@@ -26,7 +26,7 @@ const showError = (message: ReactNode, config?: ToastOptions) => {
 };
 
 function isObject(obj: unknown): boolean {
-  return obj ? typeof obj === "function" || typeof obj === "object" : false;
+  return obj ? typeof obj === 'function' || typeof obj === 'object' : false;
 }
 
 const isAxiosError = (error: any): error is AxiosError => {
@@ -42,7 +42,7 @@ const showErrors = (error: unknown, config?: ToastOptions) => {
 
         if (Array.isArray(errorArray)) {
           errorArray.forEach((message) => {
-            if (typeof message === "string") {
+            if (typeof message === 'string') {
               toast.error(ERROR_TITLE, config);
             }
           });
@@ -72,7 +72,7 @@ function flatterError(error: unknown, depth = 1): unknown {
     } else if (error instanceof Object) {
       const errorArray = flatterObject(error, _depth);
       return Array.isArray(errorArray) ? errorArray.flat(depth) : errorArray;
-    } else if (typeof error === "string") {
+    } else if (typeof error === 'string') {
       return [error];
     }
   } catch {
@@ -82,12 +82,12 @@ function flatterError(error: unknown, depth = 1): unknown {
 
 function flatterObject(
   data: object | Array<unknown>,
-  depth: number
+  depth: number,
 ): unknown[] | string | object {
   if (data instanceof Object && depth > 0) {
     depth--;
     return (Array.isArray(data) ? data : Object.values(data)).map((item) =>
-      item instanceof Object ? flatterObject(item, depth) : item
+      item instanceof Object ? flatterObject(item, depth) : item,
     );
   }
 

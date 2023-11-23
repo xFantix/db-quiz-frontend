@@ -1,6 +1,6 @@
-import { LoginForm, LoginRequest } from "../types/services/auth";
-import http from "../utils/api";
-import config from "../utils/config";
+import { LoginForm, LoginRequest } from '../types/services/auth';
+import http from '../utils/api';
+import config from '../utils/config';
 
 const login = (loginFormData: LoginForm) => {
   return http
@@ -10,9 +10,9 @@ const login = (loginFormData: LoginForm) => {
 
 const refreshToken = (token: string) => {
   return http
-    .post<Pick<LoginRequest, "accessToken">>(
+    .post<Pick<LoginRequest, 'accessToken'>>(
       config.api.endpoints.auth.refreshToken,
-      { token }
+      { token },
     )
     .then((res) => res.data);
 };
