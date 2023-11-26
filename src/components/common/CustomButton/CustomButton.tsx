@@ -4,11 +4,16 @@ import styles from './CustomButton.module.scss';
 interface Props {
   children: string | JSX.Element | JSX.Element[];
   onClick: () => void;
+  disabled?: boolean;
 }
 
-const CustomButton = ({ children, onClick }: Props) => {
+const CustomButton = ({ children, onClick, disabled }: Props) => {
   return (
-    <Button onClick={onClick} className={styles.customButton}>
+    <Button
+      disabled={disabled}
+      onClick={onClick}
+      className={styles.customButton}
+    >
       {children}
     </Button>
   );

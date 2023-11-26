@@ -21,8 +21,12 @@ export default {
       },
       user: {
         addUser: '/user/register',
+        removeUser: (id: number) => `/group/remove-user/${id}/`,
+        allUsers: '/user/all',
+        updateUser: (id: number) => `/user/update-user/${id}`,
       },
       group: {
+        group: (id: number) => `/group/${id}/`,
         allGroups: '/group/all',
         addGroup: '/group/add',
         removeGroup: (id: number) => `/group/remove/${id}/`,
@@ -36,6 +40,7 @@ export default {
     login: '/user/login',
     dashboard: '/dashboard',
     group: '/group/:id',
+    configuration: '/configuration',
   },
   ...config,
 };

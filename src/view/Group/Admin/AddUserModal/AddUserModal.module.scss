@@ -3,6 +3,12 @@
 .modal {
   padding: 1.5rem 0;
 
+  .buttonWrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
   .inputWrapper {
     width: 100%;
 

@@ -49,7 +49,16 @@ const sendPasswordEmail = (id: number) => {
 
 const addUserToGroup = (data: AddUserToGroup) => {
   return http
-    .post<User>(config.api.endpoints.user.addUser, { ...data, isAdmin: false })
+    .post<Omit<User, 'isAdmin'>>(config.api.endpoints.user.addUser, {
+      ...data,
+      isAdmin: false,
+    })
+    .then((res) => res.data);
+};
+
+const getGroup = (id: number) => {
+  return http
+    .get<GroupList>(config.api.endpoints.group.group(id))
     .then((res) => res.data);
 };
 
@@ -61,4 +70,6 @@ export const groupService = {
   sendReminderEmail,
   sendPasswordEmail,
   addUserToGroup,
+
+  getGroup,
 };

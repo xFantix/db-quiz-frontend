@@ -1,7 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../hooks';
 import { groupService } from '../../services/group.service';
-import { AddGroupData, AddUserToGroup } from '../../types/services/group';
+import {
+  AddGroupData,
+  AddUserToGroup,
+  UpdateUserData,
+} from '../../types/services/group';
+import { userService } from '../../services/user.service';
 
 const getAllGroups = createAsyncThunk('group/getAll', () => {
   return groupService
@@ -79,6 +84,42 @@ const addUserToGroup = createAsyncThunk(
   },
 );
 
+const getGroup = createAsyncThunk('group/getGroup', (id: number) => {
+  return groupService
+    .getGroup(id)
+    .then((data) => data)
+    .catch((err) =>
+      errorHandler(err.response.data.message || err.response.data.error),
+    );
+});
+
+const removeUserFromGroup = createAsyncThunk(
+  'group/removeUserFromGroup',
+  (id: number) => {
+    return userService
+      .removeUserFromGroup(id)
+      .then((data) => data)
+      .catch((err) =>
+        errorHandler(err.response.data.message || err.response.data.error),
+      );
+  },
+);
+
+const changeUserData = createAsyncThunk(
+  'group/addUserToGroup',
+  ({ id, groupId }: UpdateUserData, { dispatch }) => {
+    return userService
+      .changeUserData(id, groupId)
+      .then((data) => {
+        dispatch(getGroup(groupId));
+        return data;
+      })
+      .catch((err) =>
+        errorHandler(err.response.data.message || err.response.data.error),
+      );
+  },
+);
+
 export const groupActions = {
   getAllGroups,
   addGroup,
@@ -87,4 +128,7 @@ export const groupActions = {
   sendPasswordEmail,
   sendReminderEmail,
   addUserToGroup,
+  removeUserFromGroup,
+  getGroup,
+  changeUserData,
 };

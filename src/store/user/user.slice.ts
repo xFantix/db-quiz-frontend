@@ -23,6 +23,7 @@ const user = getLocalStorageUser() || emptyUser;
 
 const initialState: UserStore = {
   userInformation: user,
+  allUsers: [],
 };
 
 export const userSlice = createSlice({
@@ -44,6 +45,12 @@ export const userSlice = createSlice({
           refreshToken: action.payload.refreshToken,
         });
         history.push(config.routes.dashboard);
+      },
+    );
+    builder.addCase(
+      userActions.getAllUsers.fulfilled,
+      (store: UserStore, action: PayloadAction<Omit<User, 'isAdmin'>[]>) => {
+        store.allUsers = action.payload;
       },
     );
   },

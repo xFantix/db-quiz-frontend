@@ -1,18 +1,36 @@
 import CustomButton from '@components/common/CustomButton/CustomButton';
 import styles from './AdminGroup.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faMessage, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useAppDispatch } from '../../../store/hooks';
+import {
+  faCalendarDays,
+  faClose,
+  faLock,
+  faMessage,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { groupActions } from '../../../store/group/group.actions';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddUserModal from './AddUserModal/AddUserModal';
+import { format } from 'date-fns';
+import { toastService } from '../../../services/toastMessage/toastMessage';
 
 const AdminGroup = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
 
   const [addUser, setAddUser] = useState(false);
+
+  const removeUserFromGroup = (id: number) => {
+    dispatch(groupActions.removeUserFromGroup(id));
+  };
+
+  useEffect(() => {
+    dispatch(groupActions.getGroup(Number(id)));
+  }, []);
+
+  const groupInformation = useAppSelector((state) => state.group.group);
 
   return (
     <div className={styles.wrapper}>
@@ -24,7 +42,12 @@ const AdminGroup = () => {
           </div>
         </CustomButton>
         <CustomButton
-          onClick={() => dispatch(groupActions.sendPasswordEmail(Number(id)))}
+          disabled={!groupInformation?.users.length}
+          onClick={() =>
+            dispatch(groupActions.sendPasswordEmail(Number(id))).then(() => {
+              toastService.showSuccess('Wysłano wiadomość');
+            })
+          }
         >
           <div className={styles.button}>
             <FontAwesomeIcon icon={faLock} />
@@ -32,7 +55,12 @@ const AdminGroup = () => {
           </div>
         </CustomButton>
         <CustomButton
-          onClick={() => dispatch(groupActions.sendReminderEmail(Number(id)))}
+          disabled={!groupInformation?.users.length}
+          onClick={() =>
+            dispatch(groupActions.sendReminderEmail(Number(id))).then(() => {
+              toastService.showSuccess('Wysłano wiadomość');
+            })
+          }
         >
           <div className={styles.button}>
             <FontAwesomeIcon icon={faMessage} />
@@ -40,6 +68,54 @@ const AdminGroup = () => {
           </div>
         </CustomButton>
       </div>
+      {groupInformation && (
+        <div className={styles.main}>
+          <div className={styles.informationRow}>
+            <h2
+              className={styles.header}
+            >{`${groupInformation?.name} #${groupInformation.id}`}</h2>
+            <div className={styles.capsule}>
+              <FontAwesomeIcon icon={faCalendarDays} />
+              {format(
+                new Date(groupInformation.startTimeQuiz),
+                'dd-MM-yyyy HH:mm',
+              )}
+            </div>
+            <div className={styles.capsule}>
+              <FontAwesomeIcon icon={faCalendarDays} />
+              {format(
+                new Date(groupInformation.endTimeQuiz),
+                'dd-MM-yyyy HH:mm',
+              )}
+            </div>
+          </div>
+          <table className={styles.users}>
+            <tr className={styles.header}>
+              <th>Użytkownik</th>
+              <th>Index</th>
+              <th>Email</th>
+              <th>Wynik</th>
+              <th></th>
+            </tr>
+            {groupInformation.users.map((user, index) => (
+              <tr className={styles.row} key={index}>
+                <td className={styles.cell}>{`${index + 1}. ${user.name} ${
+                  user.surname
+                }`}</td>
+                <td className={styles.cell}>{user.index_umk}</td>
+                <td className={styles.cell}>{user.email}</td>
+                <td className={styles.cell}>0%</td>
+                <td className={styles.cellAction}>
+                  <FontAwesomeIcon
+                    onClick={() => removeUserFromGroup(user.id)}
+                    icon={faClose}
+                  />
+                </td>
+              </tr>
+            ))}
+          </table>
+        </div>
+      )}
       <AddUserModal id={id} visible={addUser} changeVisible={setAddUser} />
     </div>
   );

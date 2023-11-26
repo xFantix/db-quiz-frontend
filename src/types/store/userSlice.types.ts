@@ -10,6 +10,7 @@ export interface User {
 
 export interface UserStore {
   userInformation: User;
+  allUsers: Omit<User, 'isAdmin'>[];
 }
 
 export interface Tokens {

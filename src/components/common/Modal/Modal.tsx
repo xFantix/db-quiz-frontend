@@ -110,10 +110,10 @@ const Modal = ({
       cancelButtonProps={{ shape: 'round', type: 'text' }}
       okText={okText}
       footer={getFooter()}
-      bodyStyle={{
+      style={{
         overflowY: 'auto',
         maxHeight: 'calc(100vh - 200px)',
-        ...modalProps.bodyStyle,
+        ...modalProps.style,
       }}
     >
       {description ? (

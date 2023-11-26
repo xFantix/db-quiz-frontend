@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,75 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+    }
+  }
+
+  .main {
+    padding-top: 2rem;
+    min-height: calc(100vh - 180px);
+
+    .informationRow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+
+      .header {
+        font-size: 2.5rem;
+        color: $primary;
+      }
+
+      .capsule {
+        color: $white;
+        padding: 0.3rem 0.5rem;
+        border-radius: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: $primary;
+
+        svg {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .users {
+      width: 43%;
+
+      .header {
+        background-color: $primaryLight;
+        color: $white;
+        height: 3rem;
+        font-size: 1.2rem;
+
+        th {
+          text-align: left;
+          padding-left: 1rem;
+        }
+      }
+
+      .row {
+        color: $gray;
+
+        &:nth-child(even) {
+          background-color: $white;
+        }
+
+        .cell {
+          font-size: 1.2rem;
+          padding: 0.7rem;
+        }
+
+        .cellAction {
+          cursor: pointer;
+
+          svg path {
+            fill: $red;
+          }
+        }
+      }
     }
   }
 }

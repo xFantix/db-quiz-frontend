@@ -5,7 +5,7 @@ export interface GroupList {
   name: string;
   startTimeQuiz: string;
   endTimeQuiz: string;
-  users: User['id'][];
+  users: Omit<User, 'isAdmin'>[];
 }
 
 export interface AddGroupData {
@@ -16,4 +16,10 @@ export interface AddGroupData {
 
 export interface AddUserToGroup extends Omit<User, 'id' | 'isAdmin'> {
   password: string;
+  userId?: number;
+}
+
+export interface UpdateUserData {
+  id: number;
+  groupId: number;
 }
