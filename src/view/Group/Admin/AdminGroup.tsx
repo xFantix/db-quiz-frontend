@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
   faClose,
+  faEnvelope,
   faLock,
   faMessage,
   faPlus,
@@ -15,6 +16,7 @@ import { useEffect, useState } from 'react';
 import AddUserModal from './AddUserModal/AddUserModal';
 import { format } from 'date-fns';
 import { toastService } from '../../../services/toastMessage/toastMessage';
+import { Tooltip } from 'antd';
 
 const AdminGroup = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +26,10 @@ const AdminGroup = () => {
 
   const removeUserFromGroup = (id: number) => {
     dispatch(groupActions.removeUserFromGroup(id));
+  };
+
+  const messageWithPasswordToUser = (id: number) => {
+    dispatch(groupActions.sendPasswordEmailToUser(id));
   };
 
   useEffect(() => {
@@ -44,9 +50,11 @@ const AdminGroup = () => {
         <CustomButton
           disabled={!groupInformation?.users.length}
           onClick={() =>
-            dispatch(groupActions.sendPasswordEmail(Number(id))).then(() => {
-              toastService.showSuccess('Wysłano wiadomość');
-            })
+            dispatch(groupActions.sendPasswordEmailToGroup(Number(id))).then(
+              () => {
+                toastService.showSuccess('Wysłano wiadomość');
+              },
+            )
           }
         >
           <div className={styles.button}>
@@ -95,7 +103,7 @@ const AdminGroup = () => {
               <th>Index</th>
               <th>Email</th>
               <th>Wynik</th>
-              <th></th>
+              <th>Akcje</th>
             </tr>
             {groupInformation.users.map((user, index) => (
               <tr className={styles.row} key={index}>
@@ -106,10 +114,20 @@ const AdminGroup = () => {
                 <td className={styles.cell}>{user.email}</td>
                 <td className={styles.cell}>0%</td>
                 <td className={styles.cellAction}>
-                  <FontAwesomeIcon
-                    onClick={() => removeUserFromGroup(user.id)}
-                    icon={faClose}
-                  />
+                  <Tooltip title={'Usuń użytkownika'}>
+                    <FontAwesomeIcon
+                      className={styles.remove}
+                      onClick={() => removeUserFromGroup(user.id)}
+                      icon={faClose}
+                    />
+                  </Tooltip>
+                  <Tooltip title={'Wyślij hasło ponownie'}>
+                    <FontAwesomeIcon
+                      className={styles.email}
+                      onClick={() => messageWithPasswordToUser(user.id)}
+                      icon={faEnvelope}
+                    />
+                  </Tooltip>
                 </td>
               </tr>
             ))}

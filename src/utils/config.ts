@@ -32,7 +32,10 @@ export default {
         removeGroup: (id: number) => `/group/remove/${id}/`,
         addUsersFromFile: '/user/registerByCSV/',
         reminderMessage: (id: number) => `/group/email-reminder/${id}`,
-        passwordMessage: (id: number) => `/group/email-password/${id}`,
+        passwordMessageToGroup: (id: number) =>
+          `/group/email-password/group/${id}`,
+        passwordMessageToUser: (id: number) =>
+          `/group/email-password/user/${id}`,
       },
     },
   },

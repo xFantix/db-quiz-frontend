@@ -41,9 +41,15 @@ const sendReminderEmail = (id: number) => {
     .then((res) => res.data);
 };
 
-const sendPasswordEmail = (id: number) => {
+const sendPasswordEmailToGroup = (id: number) => {
   return http
-    .post(config.api.endpoints.group.passwordMessage(id), { id })
+    .post(config.api.endpoints.group.passwordMessageToGroup(id), { id })
+    .then((res) => res.data);
+};
+
+const sendPasswordEmailToUser = (id: number) => {
+  return http
+    .post(config.api.endpoints.group.passwordMessageToUser(id), { id })
     .then((res) => res.data);
 };
 
@@ -68,8 +74,8 @@ export const groupService = {
   removeGroup,
   addUsersFromFile,
   sendReminderEmail,
-  sendPasswordEmail,
+  sendPasswordEmailToGroup,
+  sendPasswordEmailToUser,
   addUserToGroup,
-
   getGroup,
 };

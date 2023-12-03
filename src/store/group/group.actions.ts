@@ -61,11 +61,22 @@ const sendReminderEmail = createAsyncThunk(
   },
 );
 
-const sendPasswordEmail = createAsyncThunk(
+const sendPasswordEmailToGroup = createAsyncThunk(
   'group/sendPasswordEmail',
   (id: number) => {
     return groupService
-      .sendPasswordEmail(id)
+      .sendPasswordEmailToGroup(id)
+      .catch((err) =>
+        errorHandler(err.response.data.message || err.response.data.error),
+      );
+  },
+);
+
+const sendPasswordEmailToUser = createAsyncThunk(
+  'group/sendPasswordEmail',
+  (id: number) => {
+    return groupService
+      .sendPasswordEmailToUser(id)
       .catch((err) =>
         errorHandler(err.response.data.message || err.response.data.error),
       );
@@ -125,7 +136,8 @@ export const groupActions = {
   addGroup,
   removeGroup,
   addUsersFromFile,
-  sendPasswordEmail,
+  sendPasswordEmailToGroup,
+  sendPasswordEmailToUser,
   sendReminderEmail,
   addUserToGroup,
   removeUserFromGroup,

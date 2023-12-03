@@ -78,9 +78,22 @@
 
         .cellAction {
           cursor: pointer;
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          height: 45px;
+          padding-left: 0.7rem;
 
-          svg path {
-            fill: $red;
+          .remove {
+            path {
+              fill: $red;
+            }
+          }
+
+          .email {
+            path {
+              fill: $primaryLight;
+            }
           }
         }
       }
