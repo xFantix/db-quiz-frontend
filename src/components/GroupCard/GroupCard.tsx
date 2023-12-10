@@ -2,6 +2,7 @@ import styles from './GroupCard.module.scss';
 import Background from '@assets/graphics/backgroundCard.svg';
 import {
   faCalendarDays,
+  faClock,
   faClose,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +21,7 @@ interface Props {
 }
 
 const GroupCard = ({ group }: Props) => {
-  const { id, name, startTimeQuiz, endTimeQuiz, users } = group;
+  const { id, name, startTimeQuiz, endTimeQuiz, users, time } = group;
 
   const dispatch = useAppDispatch();
 
@@ -50,6 +51,10 @@ const GroupCard = ({ group }: Props) => {
         <div className={styles.tagMembers}>
           <FontAwesomeIcon icon={faUser} />
           {users.length}
+        </div>
+        <div className={styles.tagTime}>
+          <FontAwesomeIcon icon={faClock} />
+          {time}
         </div>
         <div className={styles.tagStart}>
           <FontAwesomeIcon icon={faCalendarDays} />

@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.wrapper {
+  display: fle;
+  flex-direction: column;
+
+  .header {
+    font-size: 2rem;
+    color: $primary;
+  }
+
+  .questions {
+    display: flex;
+    flex-direction: column;
+
+    .question {
+      width: 100%;
+      padding: 0.5rem;
+      border: 2px solid $primaryLight;
+      border-radius: 10px;
+    }
+  }
+}

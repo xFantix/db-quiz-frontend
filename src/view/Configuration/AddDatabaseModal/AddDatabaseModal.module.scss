@@ -1,0 +1,44 @@
+@import '../../../styles/variables';
+
+.modal {
+  padding-top: 1rem;
+
+  .buttonWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .input {
+      opacity: 0;
+      width: 0.1px;
+      height: 0.1px;
+      position: absolute;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1px solid $primaryLight;
+      width: 7rem;
+      height: 2rem;
+      background-color: $white;
+      cursor: pointer;
+
+      span {
+        color: $primaryLight;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      svg {
+        font-size: 0.875rem;
+
+        path {
+          fill: $primaryLight;
+        }
+      }
+    }
+  }
+}

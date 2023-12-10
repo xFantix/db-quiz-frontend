@@ -3,6 +3,7 @@ import { User } from '../store/userSlice.types';
 export interface GroupList {
   id: number;
   name: string;
+  time: number;
   startTimeQuiz: string;
   endTimeQuiz: string;
   users: Omit<User, 'isAdmin'>[];
@@ -10,6 +11,7 @@ export interface GroupList {
 
 export interface AddGroupData {
   name: string;
+  time: number;
   startTimeQuiz: string;
   endTimeQuiz: string;
 }

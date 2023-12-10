@@ -25,6 +25,12 @@ export default {
         allUsers: '/user/all',
         updateUser: (id: number) => `/user/update-user/${id}`,
       },
+      questions: {
+        allQuestions: '/question/all',
+      },
+      quizDatabase: {
+        configure: 'quiz-database/configuration',
+      },
       group: {
         group: (id: number) => `/group/${id}/`,
         allGroups: '/group/all',

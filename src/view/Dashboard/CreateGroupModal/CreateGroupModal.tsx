@@ -28,6 +28,7 @@ const CreateGroupModal = ({ visible, changeVisible }: Props) => {
   const name = watch('name');
   const startTimeQuiz = watch('startTimeQuiz');
   const endTimeQuiz = watch('endTimeQuiz');
+  const time = watch('time');
 
   const dispatch = useAppDispatch();
 
@@ -35,15 +36,16 @@ const CreateGroupModal = ({ visible, changeVisible }: Props) => {
     dispatch(
       groupActions.addGroup({
         name,
+        time: Number(time),
         startTimeQuiz: new Date(startTimeQuiz).toISOString(),
         endTimeQuiz: new Date(endTimeQuiz).toISOString(),
       }),
-    ).finally(() => {
+    ).then(() => {
       toastService.showSuccess('Grupa została dodana');
     });
   };
 
-  const disableButton = !name || !startTimeQuiz || !endTimeQuiz;
+  const disableButton = !name || !startTimeQuiz || !endTimeQuiz || !time;
 
   return (
     <Modal
@@ -72,7 +74,21 @@ const CreateGroupModal = ({ visible, changeVisible }: Props) => {
             </Form.Item>
           )}
         />
-
+        <Controller
+          name={'time'}
+          control={control}
+          render={({ field }) => (
+            <Form.Item className={styles.inputWrapper}>
+              <Input
+                className={styles.input}
+                placeholder='Czas'
+                type='number'
+                value={field.value}
+                onChange={field.onChange}
+              />
+            </Form.Item>
+          )}
+        />
         <Form.Item className={styles.inputWrapper}>
           <RangePicker
             showTime={{ format: 'HH:mm' }}
