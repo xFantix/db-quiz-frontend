@@ -17,6 +17,20 @@ export const questionSlice = createSlice({
         store.questions = action.payload;
       },
     );
+    builder.addCase(
+      questionActions.removeQuestion.fulfilled,
+      (store: QuestionStore, action: PayloadAction<number>) => {
+        store.questions = store.questions.filter(
+          (el) => el.id !== action.payload,
+        );
+      },
+    );
+    builder.addCase(
+      questionActions.createQuestion.fulfilled,
+      (store: QuestionStore, action: PayloadAction<Question>) => {
+        store.questions = [...store.questions, action.payload];
+      },
+    );
   },
   reducers: {},
 });

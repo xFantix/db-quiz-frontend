@@ -13,11 +13,16 @@
     display: flex;
     flex-direction: column;
 
-    .question {
-      width: 100%;
-      padding: 0.5rem;
-      border: 2px solid $primaryLight;
-      border-radius: 10px;
+    .headerCollapse {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+
+      svg path {
+        fill: $red;
+        cursor: pointer;
+      }
     }
   }
 }

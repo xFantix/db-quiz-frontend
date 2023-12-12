@@ -8,6 +8,20 @@ const getAllQuestions = () => {
     .then((res) => res.data);
 };
 
-export const questionSerive = {
+const removeQuestion = (id: number) => {
+  return http
+    .delete(config.api.endpoints.questions.removeUser(id))
+    .then((res) => res.data);
+};
+
+const createQuestion = (data: Question) => {
+  return http
+    .post<Question>(config.api.endpoints.questions.createQuestion, data)
+    .then((res) => res.data);
+};
+
+export const questionService = {
   getAllQuestions,
+  removeQuestion,
+  createQuestion,
 };

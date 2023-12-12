@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.modal {
+  padding: 1.5rem 0;
+
+  .inputWrapper {
+    width: 100%;
+
+    .input {
+      height: 2rem;
+    }
+
+    .textArea {
+      height: 6rem;
+    }
+
+    .errorMessage {
+      font-size: 1rem;
+      color: $errorRed;
+    }
+  }
+}

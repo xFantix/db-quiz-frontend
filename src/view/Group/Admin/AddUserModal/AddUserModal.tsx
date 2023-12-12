@@ -50,7 +50,6 @@ const AddUserModal = ({ visible, changeVisible, id }: Props) => {
   const {
     control,
     watch,
-
     formState: { errors },
   } = useForm<AddUserToGroup>({
     mode: 'onSubmit',

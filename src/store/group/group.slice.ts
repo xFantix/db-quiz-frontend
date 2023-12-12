@@ -23,7 +23,6 @@ export const groupSlice = createSlice({
       builder.addCase(
         groupActions.addGroup.fulfilled,
         (store: GroupStore, action: PayloadAction<GroupList>) => {
-          console.log(action.payload);
           store.groups = [...store.groups, action.payload];
         },
       ),

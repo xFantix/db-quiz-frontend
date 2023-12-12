@@ -27,6 +27,8 @@ export default {
       },
       questions: {
         allQuestions: '/question/all',
+        createQuestion: '/question/add',
+        removeUser: (id: number) => `/question/remove/${id}/`,
       },
       quizDatabase: {
         configure: 'quiz-database/configuration',

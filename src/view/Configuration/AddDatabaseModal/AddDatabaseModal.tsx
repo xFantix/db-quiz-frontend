@@ -21,8 +21,6 @@ const AddDatabaseModal = ({ visible, changeVisible }: Props) => {
   const onSubmit = async () => {
     const formData = new FormData();
 
-    console.log(file);
-
     if (file && file.type === 'application/sql') {
       return Promise.resolve(formData.append('file', file)).then(() => {
         dispatch(dbQuizActions.configureDbQuiz(formData)).then(() => {
